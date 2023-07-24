@@ -5,8 +5,8 @@ pr: none
 
 variables:
   HELM_EXPERIMENTAL_OCI: 1
-  ACR.Name: ''
-  Azure.ServiceConnection: '[your azure service connection]'
+  ACR.Name: 'f2deskacrdev'
+  Azure.ServiceConnection: 'F2D-NON-PRD-SVC'
 
 stages:
 - stage: build
@@ -29,7 +29,7 @@ stages:
       inputs:
         helmVersionToInstall: 'latest'
     - bash: |
-         helm package k8s/realworld-backend/ --app-version $(Build.BuildNumber)
+         helm package azure-voting-app-redis/azure-vote/azure-vote-front --app-version $(Build.BuildNumber)
          mv *.tgz $(Build.ArtifactStagingDirectory)/
     - task: AzureCLI@1
       displayName: 'Push helm chart'
