@@ -36,4 +36,4 @@ stages:
       inputs:
         azureSubscription: $(Azure.ServiceConnection)
         scriptLocation: inlineScript
-        inlineScript: ' helm push $(Build.ArtifactStagingDirectory)/*.tgz' oci://f2deskacrdev.azurecr.io/helm '
+        inlineScript: 'helm push $(Build.ArtifactStagingDirectory)/*.tgz oci://f2deskacrdev.azurecr.io/helm'
