@@ -29,7 +29,7 @@ stages:
       inputs:
         helmVersionToInstall: 'latest'
     - bash: |
-         helm package azure-voting-app-redis/azure-vote/azure-vote-front --app-version $(Build.BuildNumber)
+         helm package ./azure-vote/azure-vote-front --app-version $(Build.BuildNumber)
          mv *.tgz $(Build.ArtifactStagingDirectory)/
     - task: AzureCLI@1
       displayName: 'Push helm chart'
