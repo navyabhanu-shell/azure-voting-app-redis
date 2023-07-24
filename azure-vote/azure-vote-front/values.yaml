@@ -1,0 +1,36 @@
+# Default values for azure-vote-front.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+backendName: azure-vote-backend-master
+redis:
+  image:
+    registry: mcr.microsoft.com
+    repository: oss/bitnami/redis
+    tag: 6.0.8
+  fullnameOverride: azure-vote-backend
+  auth:
+    enabled: false
+
+image:
+  repository: f2deskacrdev.azurecr.io/azure-vote-front
+  pullPolicy: IfNotPresent
+  tag: "v1"
+
+service:
+  type: LoadBalancer 
+  port: 80
+ingress:
+  enabled: false
+  annotations:  
+    kubernetes.io/ingress.class: nginx
+  tls: false
+  classname : nginx
+  hosts:
+    - host: azurevotefront.domain.com 
+      paths:
+        - path: /
+          pathType: Prefix
+       
+  

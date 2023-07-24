@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "azure-vote-front.fullname" . }}
+spec:
+ replicas: {{ .Values.replicaCount }}
+ selector:
+   matchLabels:
+     {{- include "azure-vote-front.selectorLabels" . | nindent 6 }}
+ template:
+    metadata:
+      labels:
+        {{- include "azure-vote-front.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+          - name: REDIS
+            value: {{ .Values.backendName }}
+          
