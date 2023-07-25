@@ -64,11 +64,11 @@ stages:
                      echo "login to acr using helm"
 
               - bash: |
-                    helm chart pull $(acr.name).azurecr.io/helm/azure-vote-front:latest
+                    helm pull $(acr.name).azurecr.io/helm/azure-vote-front:latest
                     displayName: get helm chart on agent
               
               - bash: |
-                  helm chart export $(acr.name).azurecr.io/helm/azure-vote-front:latest --destination $(build.stagingdirectory)
+                  helm export $(acr.name).azurecr.io/helm/azure-vote-front:latest --destination $(build.stagingdirectory)
                 displayName: export the chart to folder
               
   
