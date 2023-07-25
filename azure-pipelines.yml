@@ -43,8 +43,9 @@ stages:
   jobs:
   - job: job_helm_deploy
     displayName: Deploy to aks
-    pool:
-      vmImage: 'ubuntu-latest'
+    pool: 
+      name: "f2d-self-hosted-agentpool"
+      vmImage: "aewnw02004test"
     steps:
               - task: HelmInstaller@0
                 displayName: install helm
