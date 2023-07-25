@@ -60,8 +60,8 @@ stages:
                    inlineScript: |
                      USER_NAME="helmtoken"
                      PASSWORD=$(az acr token create -n $USER_NAME -r $ACR_NAME --scope-map _repositories_admin --only-show-errors --query "credentials.passwords[0].value" -o tsv)
-                      echo "$(PASSWORD)" | helm registry login $(acr.name).azurecr.io --username $USER_NAME --password-stdin
-                      echo "login to acr using helm"
+                     helm registry login $(acr.name).azurecr.io --username $USER_NAME --password $PASSWORD
+                     echo "login to acr using helm"
 
               - bash: |
                     helm pull $(acr.name).azurecr.io/helm/azure-vote-front:latest
