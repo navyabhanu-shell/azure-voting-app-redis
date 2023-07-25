@@ -68,14 +68,15 @@ stages:
                 displayName: deploy chart to aks
                 inputs:
                   connectionType: 'Azure Resource Manager'
-                  azureSubscription: '$(azure.service.connection)'
-                  azureResourceGroup: 'demos'
-                  kubernetesCluster: 'aksdemoutkarsh'
-                  namespace: 'helmdemo'
+                  azureSubscription: 'F2D-NON-PRD-SVC'
+                  azureResourceGroup: 'AZ-F2D-EW-RGP_AKS-sandbox'
+                  kubernetesCluster: 'AZ-f2d-WE-QST-N-2004-AKS-Sandbox'
+                  namespace: 'test'
                   command: 'upgrade'
                   chartType: 'FilePath'
                   chartPath: '$(build.stagingdirectory)/azure-vote/'
+                  waitForExecution: false
                   releaseName: 'helmdemo'
-                  arguments: '--create-namespace --install'
-              -task : HelmDeploy@0
+                  
+              
                
