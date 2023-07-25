@@ -70,8 +70,17 @@ stages:
               - bash: |
                   helm export oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0  $(build.stagingdirectory)
                   echo "export the chart to folder"
-  
-  
-                  
-              
+              - task: HelmDeploy@0
+                displayName: deploy chart to aks
+                inputs:
+                  connectionType: 'Azure Resource Manager'
+                  azureSubscription: 'F2D-NON-PRD-SVC'
+                  azureResourceGroup: 'AZ-F2D-EW-RGP_AKS-sandbox'
+                  kubernetesCluster: 'AZ-f2d-WE-QST-N-2004-AKS-Sandbox'
+                  namespace: 'test'
+                  command: 'upgrade'
+                  chartType: 'FilePath'
+                  chartPath: '$(build.stagingdirectory)/azure-vote/'
+                  waitForExecution: false
+                  releaseName: 'helmdemo'
                
