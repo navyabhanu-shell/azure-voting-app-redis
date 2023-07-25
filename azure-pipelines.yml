@@ -64,7 +64,7 @@ stages:
                      echo "login to acr using helm"
 
               - bash: |
-                    helm pull $(acr.name).azurecr.io/helm/azure-vote-front:latest
+                    helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front:latest
                     displayName: get helm chart on agent
               
               - bash: |
