@@ -68,7 +68,7 @@ stages:
                     displayName: get helm chart on agent
               
               - bash: |
-                  helm export $(acr.name).azurecr.io/helm/azure-vote-front:latest --destination $(build.stagingdirectory)
+                  helm export oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0  $(build.stagingdirectory)
                 displayName: export the chart to folder
               
   
