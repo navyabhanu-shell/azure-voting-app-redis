@@ -38,19 +38,14 @@ stages:
         scriptLocation: inlineScript
         inlineScript: 'helm push $(Build.ArtifactStagingDirectory)/*.tgz oci://f2deskacrdev.azurecr.io/helm'
 - stage: Deploy
-  displayName: CD
-  dependsOn: ci
+  displayName: Deploy to aks cluster 
+  dependsOn: build
   jobs:
-      - deployment: helm_publish_aks
-        displayName: deploy to aks
-        environment: 
-          name: PROD
-          resourceName: helmdemo
-          resourceType: Kubernetes
-        strategy:
-          runOnce:
-            deploy:
-              steps:
+  - job: job_helm_deploy
+    displayName: Deploy to aks
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
               - task: HelmInstaller@0
                 displayName: install helm
                 inputs:
