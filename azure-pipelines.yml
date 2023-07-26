@@ -83,8 +83,7 @@ stages:
                   azureContainerRegistry: $(ACR.Name)
                   namespace: 'test'
                   command: 'upgrade'
-                  chartType: 'Name'
-                  chartName: "helm/azure-vote-front:0.1.0"
+                  chartPath: "$(System.DefaultWorkingDirectory)/azure-vote-front:0.1.0"                
                   waitForExecution: false
                   releaseName: 'helmdemo'
                
