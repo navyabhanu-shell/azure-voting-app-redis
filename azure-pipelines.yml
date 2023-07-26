@@ -71,6 +71,11 @@ stages:
               - bash: |
                   helm fetch oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0  $(build.stagingdirectory)
                   echo "export the chart to folder"
+              - task: KubectlInstaller@0
+                displayName: Kubectl installer
+                inputs: 
+                 kubectlVersion: latest
+
               - task: HelmDeploy@0
                 displayName: deploy chart to aks
                 inputs:
