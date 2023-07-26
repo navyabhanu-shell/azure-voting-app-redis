@@ -79,6 +79,7 @@ stages:
                   azureContainerRegistry: $(ACR.Name)
                   namespace: 'test'
                   command: 'upgrade'
+                  chartType: 'FilePath'
                   chartPath: "$(System.DefaultWorkingDirectory)"
                   chartName: helm/azure-vote-front            
                   waitForExecution: false
