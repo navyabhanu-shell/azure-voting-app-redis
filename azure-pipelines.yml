@@ -39,6 +39,7 @@ stages:
         scriptLocation: inlineScript
         inlineScript: 'helm push $(Build.ArtifactStagingDirectory)/*.tgz oci://f2deskacrdev.azurecr.io/helm'
 - stage: Deploy
+  condition: true
   displayName: Deploy to aks cluster
   jobs:
   - job: job_helm_deploy
