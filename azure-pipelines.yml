@@ -67,10 +67,6 @@ stages:
               - bash: |
                     helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0
                     echo "get helm chart on agent"
-              
-              - bash: |
-                  helm fetch oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0  $(build.stagingdirectory)
-                  echo "export the chart to folder"
               - task: KubectlInstaller@0
                 displayName: Kubectl installer
                 inputs: 
@@ -85,8 +81,8 @@ stages:
                   kubernetesCluster: 'AZ-f2d-WE-QST-N-2004-AKS-Sandbox'
                   namespace: 'test'
                   command: 'upgrade'
-                  chartType: 'FilePath'
-                  chartPath: '$(build.stagingdirectory)/azure-vote/'
+                  chartType: 'Name'
+                  chartName: "azure-vote-front"
                   waitForExecution: false
                   releaseName: 'helmdemo'
                
