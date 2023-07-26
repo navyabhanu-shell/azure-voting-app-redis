@@ -80,7 +80,7 @@ stages:
                   namespace: 'test'
                   command: 'upgrade'
                   chartType: 'FilePath'
-                  chartPath: "$(System.DefaultWorkingDirectory)/azure-vote-front"
+                  chartPath: "$(System.DefaultWorkingDirectory)/azure-vote"
                   chartName: helm/azure-vote-front            
                   waitForExecution: false
                   releaseName: 'helmdemo'
