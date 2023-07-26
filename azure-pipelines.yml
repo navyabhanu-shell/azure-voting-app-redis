@@ -69,7 +69,7 @@ stages:
                     echo "get helm chart on agent"
               
               - bash: |
-                  helm export oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0  $(build.stagingdirectory)
+                  helm fetch oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0  $(build.stagingdirectory)
                   echo "export the chart to folder"
               - task: HelmDeploy@0
                 displayName: deploy chart to aks
