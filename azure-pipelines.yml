@@ -68,6 +68,7 @@ stages:
               - bash: |
                     helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0 -d "$(System.DefaultWorkingDirectory)"
                     echo "get helm chart on agent"
+                    echo "$(System.DefaultWorkingDirectory)"
               - task: KubectlInstaller@0
                 displayName: Kubectl installer
                 inputs: 
@@ -84,7 +85,7 @@ stages:
                   namespace: 'test'
                   command: 'upgrade'
                   chartPath: "$(System.DefaultWorkingDirectory)/azure-vote-front:0.1.0"
-                  chartName: helm/azure-vote-front              
+                  chartName: "azure-vote-front"             
                   waitForExecution: false
                   releaseName: 'helmdemo'
                
