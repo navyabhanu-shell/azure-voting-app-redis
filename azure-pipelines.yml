@@ -82,7 +82,7 @@ stages:
                   namespace: 'test'
                   command: 'upgrade'
                   chartType: 'Name'
-                  chartName: "helm/azure-vote-front"
+                  chartName: "f2deskacrdev.azurecr.io/helm/azure-vote-front:0.1.0"
                   waitForExecution: false
                   releaseName: 'helmdemo'
                
