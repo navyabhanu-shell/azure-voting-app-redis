@@ -80,10 +80,11 @@ stages:
                   azureSubscription: 'F2D-NON-PRD-SVC'
                   azureResourceGroup: 'AZ-F2D-EW-RGP_AKS-sandbox'
                   kubernetesCluster: 'AZ-f2d-WE-QST-N-2004-AKS-Sandbox'
+                  azureContainerRegistry: $(ACR.Name)
                   namespace: 'test'
                   command: 'upgrade'
                   chartType: 'Name'
-                  chartName: "f2deskacrdev.azurecr.io/helm/azure-vote-front:0.1.0"
+                  chartName: "helm/azure-vote-front:0.1.0"
                   waitForExecution: false
                   releaseName: 'helmdemo'
                
