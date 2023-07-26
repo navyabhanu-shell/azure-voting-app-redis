@@ -10,7 +10,7 @@ variables:
 
 stages:
 - stage: build
-  condition: false
+  condition: true
   displayName: Build and Push
   jobs:  
   - job: job_helm
@@ -83,5 +83,5 @@ stages:
                   chartPath: "$(System.DefaultWorkingDirectory)/azure-vote/azure-vote-front"
                   chartName: helm/azure-vote-front            
                   waitForExecution: false
-                  releaseName: 'helmdemo'
+                  releaseName: 'azure-vote-front'
                
