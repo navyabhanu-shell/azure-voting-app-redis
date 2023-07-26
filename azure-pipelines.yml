@@ -66,7 +66,7 @@ stages:
                      echo "login to acr using helm"
 
               - bash: |
-                    helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0
+                    helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0 -d $(System.DefaultWorkingDirectory)
                     echo "get helm chart on agent"
               - task: KubectlInstaller@0
                 displayName: Kubectl installer
