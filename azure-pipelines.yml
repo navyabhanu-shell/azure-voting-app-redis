@@ -52,7 +52,7 @@ stages:
                 displayName: install helm
                 inputs:
                   helmVersion: 'latest'
-                  installKubectl: false
+                  installKubectl: true
               - task: AzureCLI@2
                 displayName: Login to Azure Container Registry
                 inputs:
@@ -69,11 +69,6 @@ stages:
                     helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0 -d "$(System.DefaultWorkingDirectory)"
                     echo "get helm chart on agent"
                     echo "$(System.DefaultWorkingDirectory)"
-              - task: KubectlInstaller@0
-                displayName: Kubectl installer
-                inputs: 
-                 kubectlVersion: latest
-
               - task: HelmDeploy@0
                 displayName: deploy chart to aks
                 inputs:
