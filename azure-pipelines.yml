@@ -66,7 +66,7 @@ stages:
                      echo "login to acr using helm"
 
               - bash: |
-                    helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0 -d $(System.DefaultWorkingDirectory)
+                    helm pull oci://$(acr.name).azurecr.io/helm/azure-vote-front --version 0.1.0 -d "$(System.DefaultWorkingDirectory)"
                     echo "get helm chart on agent"
               - task: KubectlInstaller@0
                 displayName: Kubectl installer
@@ -83,7 +83,8 @@ stages:
                   azureContainerRegistry: $(ACR.Name)
                   namespace: 'test'
                   command: 'upgrade'
-                  chartPath: "$(System.DefaultWorkingDirectory)/azure-vote-front:0.1.0"                
+                  chartPath: "$(System.DefaultWorkingDirectory)/azure-vote-front:0.1.0"
+                  chartName: helm/azure-vote-front              
                   waitForExecution: false
                   releaseName: 'helmdemo'
                
